@@ -26,6 +26,8 @@ class BrushMouseMixin {
           return
         }
 
+        console.log('mouse move')
+
         if (isMouseDown) {
           fabric.Canvas.prototype._onMouseMoveInDrawingMode.call(this, event)
         } else {

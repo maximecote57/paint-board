@@ -203,6 +203,7 @@ export class CanvasClickEvent {
           }
         }
       }
+      console.log('currentElement', currentElement)
       this.currentElement = currentElement
     })
     canvas?.on('mouse:move', (e) => {

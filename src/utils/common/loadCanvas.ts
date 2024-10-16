@@ -42,6 +42,7 @@ export const handleCanvasJSONLoaded = (canvas: fabric.Canvas) => {
     if (obj._customType === ELEMENT_CUSTOM_TYPE.SHAPE_LINE) {
       const points = (obj as fabric.Polyline).points as fabric.Point[]
       const lastControl = points.length - 1
+
       obj.controls = points.reduce(function (acc, point, index) {
         acc['p' + index] = new fabric.Control({
           positionHandler: polygonPositionHandler,

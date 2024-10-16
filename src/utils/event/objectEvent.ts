@@ -16,18 +16,22 @@ export class ObjectEvent {
   initObjectEvent() {
     const canvas = paintBoard?.canvas
     canvas?.on('selection:created', () => {
+      console.log('selection:created')
       paintBoard.triggerHook()
     })
 
     canvas?.on('selection:updated', () => {
+      console.log('selection:updated')
       paintBoard.triggerHook()
     })
 
     canvas?.on('selection:cleared', () => {
+      console.log('selection:cleared')
       paintBoard.triggerHook()
     })
 
     canvas?.on('path:created', (options) => {
+      console.log('path:created')
       const { mode, drawType } = useBoardStore.getState()
       if ([ActionMode.DRAW, ActionMode.ERASE].includes(mode)) {
         /**
@@ -54,6 +58,7 @@ export class ObjectEvent {
       }
     })
     canvas?.on('object:modified', (e) => {
+      console.log('object:modified')
       // Prohibit recording if the change is due to IText input content
       if (e.target?.type === 'i-text') {
         const obj = e.target as fabric.IText
@@ -63,6 +68,7 @@ export class ObjectEvent {
       }
       // Usually operations that change the object such as dragging and zooming, record the operation
       if (e.action && e.target) {
+        console.log('save state')
         paintBoard.history?.saveState()
       }
     })

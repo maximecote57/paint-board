@@ -39,6 +39,7 @@ export class PaintBoard {
   }
 
   initCanvas(canvasEl: HTMLCanvasElement) {
+    console.log('initCanvas')
     return new Promise<boolean>(async (resolve) => {
       this.canvas = new fabric.Canvas(canvasEl, {
         selectionColor: 'rgba(101, 204, 138, 0.3)',
@@ -140,6 +141,7 @@ export class PaintBoard {
     if (!this.canvas) {
       return
     }
+    console.log('mode')
     let isDrawingMode = false
     let selection = false
     const objectSet: Partial<fabric.IObjectOptions> = {
@@ -204,6 +206,7 @@ export class PaintBoard {
     const drawStyle = useDrawStore.getState().drawStyle
     switch (drawStyle) {
       case DrawStyle.Basic:
+        console.log('renderPencilBrush')
         renderPencilBrush()
         break
       case DrawStyle.Material:
@@ -393,6 +396,7 @@ export class PaintBoard {
    */
   triggerHook() {
     this.hookFn.map((fn) => {
+      console.log('calling hook')
       fn?.()
     })
   }
